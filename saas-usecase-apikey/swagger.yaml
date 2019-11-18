@@ -2,6 +2,7 @@
 swagger: "2.0"
 info:
   title: Beer Catalog API
+  version: "1.0"
   description: An API for querying beer catalog of Acme Inc.
   contact:
     name: Laurent Broudoux
@@ -10,34 +11,30 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: "0.9"
 basePath: /api
 paths:
   /beer/{name}:
     get:
       tags:
       - beer
-      summary: Get beer having name
-      description: Get beer having name
-      operationId: GetBeer
       responses:
         "200":
           description: Beer having requested name
           schema:
             $ref: '#/definitions/Beer'
+      operationId: GetBeer
+      summary: Get beer having name
+      description: Get beer having name
     parameters:
     - name: name
-      in: path
       description: Name of beer to retrieve
+      in: path
       required: true
       type: string
   /beer/findByStatus/{status}:
     get:
       tags:
       - beer
-      summary: Get beers having status
-      description: Get beers having status
-      operationId: FindBeersByStatus
       responses:
         "200":
           description: List of beers having requested status
@@ -45,23 +42,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Beer'
+      operationId: FindBeersByStatus
+      summary: Get beers having status
+      description: Get beers having status
     parameters:
     - name: status
-      in: path
       description: Status of beers to retrieve
+      in: path
       required: true
       type: string
     - name: page
-      in: query
       description: Number of page to retrieve
+      in: query
       type: number
   /beer:
     get:
       tags:
       - beer
-      summary: List beers within catalog
-      description: List beers within catalog
-      operationId: ListBeers
       responses:
         "200":
           description: Array of beers
@@ -69,14 +66,14 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Beer'
+      operationId: ListBeers
+      summary: List beers within catalog
+      description: List beers within catalog
     parameters:
     - name: page
-      in: query
       description: Number of page to retrieve
+      in: query
       type: number
-tags:
-- name: beer
-  description: Beer resource
 definitions:
   Beer:
     properties:
@@ -102,3 +99,6 @@ securityDefinitions:
     in: header
 security:
 - api-key: []
+tags:
+- name: beer
+  description: Beer resource
